@@ -1,0 +1,199 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNl69upHdVO6Q+JBrj3BOnQ"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XYN65xQ2wmBD",
+        "outputId": "cc5cf87f-5a33-4b0d-ced1-69f626baea24"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter vacuum cleaner spot (0 or 1): 0\n",
+            "Which room is dirty (0 if dirty or 1 if not):\n",
+            "1\n",
+            "0\n",
+            "Vacuum on moved to other room, garbage off\n"
+          ]
+        }
+      ],
+      "source": [
+        "arr = [0, 1]\n",
+        "\n",
+        "a = int(input(\"Enter vacuum cleaner spot (0 or 1): \"))\n",
+        "\n",
+        "dirty = []\n",
+        "print(\"Which room is dirty (0 if dirty or 1 if not):\")\n",
+        "\n",
+        "for i in range(2):\n",
+        "    dirty.append(int(input()))\n",
+        "\n",
+        "if a == 0:\n",
+        "    if dirty[0] == 0:\n",
+        "        print(\"Vacuum on, garbage off\")\n",
+        "\n",
+        "    if dirty[1] == 0:\n",
+        "        print(\"Vacuum on moved to other room, garbage off\")\n",
+        "\n",
+        "else:\n",
+        "    if dirty[1] == 0:\n",
+        "        print(\"Vacuum on, garbage off\")\n",
+        "\n",
+        "    if dirty[0] == 1:\n",
+        "        print(\"Vacuum on moved to other room, garbage off\")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "a = [\" \"] * 9\n",
+        "\n",
+        "\n",
+        "def check(player):\n",
+        "    flag = 0\n",
+        "\n",
+        "\n",
+        "    if a[0] == a[1] == a[2] == player:\n",
+        "        flag = 1\n",
+        "    elif a[3] == a[4] == a[5] == player:\n",
+        "        flag = 1\n",
+        "    elif a[6] == a[7] == a[8] == player:\n",
+        "        flag = 1\n",
+        "\n",
+        "\n",
+        "    elif a[0] == a[3] == a[6] == player:\n",
+        "        flag = 1\n",
+        "    elif a[1] == a[4] == a[7] == player:\n",
+        "        flag = 1\n",
+        "    elif a[2] == a[5] == a[8] == player:\n",
+        "        flag = 1\n",
+        "\n",
+        "\n",
+        "    elif a[0] == a[4] == a[8] == player:\n",
+        "        flag = 1\n",
+        "    elif a[2] == a[4] == a[6] == player:\n",
+        "        flag = 1\n",
+        "\n",
+        "    return flag\n",
+        "\n",
+        "\n",
+        "def display():\n",
+        "    print(a[0], \"|\", a[1], \"|\", a[2])\n",
+        "    print(\"--+---+--\")\n",
+        "    print(a[3], \"|\", a[4], \"|\", a[5])\n",
+        "    print(\"--+---+--\")\n",
+        "    print(a[6], \"|\", a[7], \"|\", a[8])\n",
+        "\n",
+        "\n",
+        "player = \"X\"\n",
+        "\n",
+        "for i in range(9):\n",
+        "    display()\n",
+        "\n",
+        "    pos = int(input(\"Enter position (1-9): \")) - 1\n",
+        "\n",
+        "    if a[pos] == \" \":\n",
+        "        a[pos] = player\n",
+        "    else:\n",
+        "        print(\"Position already occupied!\")\n",
+        "        continue\n",
+        "\n",
+        "    flag = check(player)\n",
+        "\n",
+        "    if flag == 1:\n",
+        "        display()\n",
+        "        print(player, \"wins!\")\n",
+        "        break\n",
+        "\n",
+        "    if player == \"X\":\n",
+        "        player = \"O\"\n",
+        "    else:\n",
+        "        player = \"X\"\n",
+        "\n",
+        "else:\n",
+        "    display()\n",
+        "    print(\"Draw!\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "d5oHzf_Pw6Rw",
+        "outputId": "d3e5ed14-68ac-434e-84e6-a54ad61b09bc"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "Enter position (1-9): 1\n",
+            "X |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "Enter position (1-9): 1\n",
+            "Position already occupied!\n",
+            "X |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "Enter position (1-9): 2\n",
+            "X | O |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "Enter position (1-9): 4\n",
+            "X | O |  \n",
+            "--+---+--\n",
+            "X |   |  \n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "Enter position (1-9): 6\n",
+            "X | O |  \n",
+            "--+---+--\n",
+            "X |   | O\n",
+            "--+---+--\n",
+            "  |   |  \n",
+            "Enter position (1-9): 7\n",
+            "X | O |  \n",
+            "--+---+--\n",
+            "X |   | O\n",
+            "--+---+--\n",
+            "X |   |  \n",
+            "X wins!\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
